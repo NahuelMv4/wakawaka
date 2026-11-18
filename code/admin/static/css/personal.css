@@ -1,0 +1,143 @@
+.seccion-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.seccion-header h1 {
+    margin: 0;
+}
+
+/* Formulario de filtros adaptativo (Mobile First) */
+.filtro-formulario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    background-color: var(--superficie);
+    padding: 1rem;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.filtro-formulario input {
+    flex: 1;
+    min-width: 140px;
+}
+
+/* Contenedor centralizado para los formularios de Crear/Editar */
+.form-contenedor {
+    max-width: 32rem;
+    margin: 0 auto;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(31, 42, 51, 0.05);
+}
+
+.formulario-estandar .form-grupo {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.formulario-estandar label {
+    font-weight: 600;
+    color: var(--acero);
+}
+
+.formulario-estandar input,
+.formulario-estandar select {
+    width: 100%;
+}
+
+/* Botonera de formularios */
+.form-botones {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+
+.btn-secundario-enlace {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--alto-tactil);
+    padding: 0 1rem;
+    color: var(--azul);
+    background-color: transparent;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.15s;
+}
+
+.btn-secundario-enlace:hover {
+    background-color: var(--azul-claro);
+    border-color: var(--azul);
+}
+
+/* Insignias (Badges) de Estado */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 9999px;
+}
+
+.badge.activo {
+    background-color: #eaf4df;
+    color: #2f5a0c;
+}
+
+.badge.inactivo {
+    background-color: #fbe5e3;
+    color: #7a1f17;
+}
+
+/* Acciones en celdas de la tabla */
+.acciones-celda {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-accion {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-editar {
+    background-color: var(--azul-claro);
+    color: var(--azul-oscuro);
+    border: 1px solid var(--azul);
+}
+
+.btn-editar:hover {
+    background-color: var(--azul);
+    color: #fff;
+}
+
+.btn-eliminar {
+    background-color: #fbe5e3;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+    color: #fff;
+}

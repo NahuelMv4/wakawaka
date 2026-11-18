@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}Historial de Configuraciones{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Historial de Configuraciones y Mantenimiento</h2>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {% if configuraciones %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Modo Mantenimiento</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for config in configuraciones %}
+                            <tr>
+                                <td>{{ config.id }}</td>
+                                <td>
+                                    {% if config.mantenimiento %}
+                                        <span class="badge bg-danger">Activado</span>
+                                    {% else %}
+                                        <span class="badge bg-success">Desactivado</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <form action="{{ url_for('configuracion.toggle_mantenimiento_por_id', config_id=config.id) }}" method="POST" class="d-inline">
+                                        {% if config.mantenimiento %}
+                                            <input type="hidden" name="accion" value="desactivar">
+                                            <button type="submit" class="btn btn-sm btn-outline-success" title="Desactivar mantenimiento">
+                                                Desactivar
+                                            </button>
+                                        {% else %}
+                                            <input type="hidden" name="accion" value="activar">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Activar mantenimiento">
+                                                Activar
+                                            </button>
+                                        {% endif %}
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info mb-0" role="alert">
+                    No hay registros de configuración almacenados en el historial.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Importar Personal - CSV{% endblock %}
+
+{% block content %}
+<div class="seccion-header">
+    <h1>Importación Masiva de Personal (CSV)</h1>
+    <a href="{{ url_for('priv_personal.listar') }}" class="btn">Volver al Listado</a>
+</div>
+
+<div class="form-container">
+    <p>Sube un archivo en formato <strong>CSV</strong> con las siguientes columnas obligatorias:</p>
+    <p><code>dni, nombre, apellido, tipo_personal_id, sector_id, tipo_menu_id</code></p>
+    
+    <form method="POST" enctype="multipart/form-data" class="filtro-formulario">
+        <div class="form-group">
+            <input type="file" name="archivo_csv" accept=".csv" required>
+        </div>
+        <button type="submit" class="btn">Importar Archivo</button>
+    </form>
+</div>
+{% endblock %}
