@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Resultado de Importación{% endblock %}
+
+{% block content %}
+<div class="seccion-header">
+    <h1>Resultado de la Importación Masiva</h1>
+    <a href="{{ url_for('priv_personal.listar') }}" class="btn">Ir al Listado</a>
+</div>
+
+<div class="resultado-resumen">
+    <p><strong>Total Procesados:</strong> {{ resultado.procesados }}</p>
+    <p><strong>Importados con Éxito:</strong> <span style="color: green;">{{ resultado.importados }}</span></p>
+    <p><strong>Rechazados:</strong> <span style="color: red;">{{ resultado.rechazados }}</span></p>
+</div>
+
+{% if resultado.errores %}
+    <h3>Detalle de Errores:</h3>
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>Fila CSV</th>
+                <th>DNI</th>
+                <th>Motivo del Rechazo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for error in resultado.errores %}
+                <tr>
+                    <td>{{ error.fila }}</td>
+                    <td>{{ error.dni if error.dni else '-' }}</td>
+                    <td style="color: red;">{{ error.motivo }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

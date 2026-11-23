@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block title %}Ajustes del Sistema{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Ajustes del Sistema y Mantenimiento</h2>
+    </div>
+
+    {% if configuraciones %}
+        {% for config in configuraciones %}
+        <div class="row g-4 mb-4">
+            <!-- Parámetros generales -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-dark text-white">
+                        Parámetros Generales
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('configuracion.actualizar_ajustes', config_id=config.id) }}" method="POST">
+                            <div class="mb-3">
+                                <label for="paginacion_{{ config.id }}" class="form-label fw-semibold">
+                                    Cantidad de elementos por página
+                                </label>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    class="form-control"
+                                    id="paginacion_{{ config.id }}"
+                                    name="paginacion"
+                                    value="{{ config.paginacion }}"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="horario_corte_{{ config.id }}" class="form-label fw-semibold">
+                                    Horario de corte (día anterior)
+                                </label>
+                                <input
+                                    type="time"
+                                    class="form-control"
+                                    id="horario_corte_{{ config.id }}"
+                                    name="horario_corte"
+                                    value="{{ config.horario_corte.strftime('%H:%M') if config.horario_corte else '18:00' }}"
+                                    required
+                                >
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                Guardar parámetros
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modo Mantenimiento -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <span>Modo Mantenimiento</span>
+                        {% if config.mantenimiento %}
+                            <span class="badge bg-danger">Activado</span>
+                        {% else %}
+                            <span class="badge bg-success">Desactivado</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('configuracion.toggle_mantenimiento_por_id', config_id=config.id) }}" method="POST">
+                            <div class="mb-3">
+                                <label for="mensaje_{{ config.id }}" class="form-label fw-semibold">
+                                    Mensaje de mantenimiento para los usuarios
+                                </label>
+                                <textarea
+                                    class="form-control"
+                                    id="mensaje_{{ config.id }}"
+                                    name="mensaje_mantenimiento"
+                                    rows="3"
+                                    maxlength="500"
+                                    placeholder="Ej: El sistema estará en mantenimiento hasta las 14:00 hs."
+                                    {% if config.mantenimiento %}readonly{% endif %}
+                                >{{ config.mensaje_mantenimiento or '' }}</textarea>
+                            </div>
+
+                            {% if config.mantenimiento %}
+                                <input type="hidden" name="accion" value="desactivar">
+                                <button type="submit" class="btn btn-success">
+                                    Desactivar mantenimiento
+                                </button>
+                            {% else %}
+                                <input type="hidden" name="accion" value="activar">
+                                <button type="submit" class="btn btn-danger">
+                                    Activar mantenimiento
+                                </button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info mb-0" role="alert">
+            No hay registros de configuración almacenados en el sistema.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

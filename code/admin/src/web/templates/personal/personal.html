@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Gestión de Personal
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="seccion-header">
+        <h1>Listado de Personal</h1>
+        <div class="acciones-header">
+            <a href="{{ url_for('priv_personal.importar_csv') }}" class="btn btn-secundario">Importar CSV</a>
+            <a href="{{ url_for('priv_personal.crear') }}" class="btn">+ Nuevo Personal</a>
+        </div>
+    </div>
+
+    <form method="GET" action="{{ url_for('priv_personal.listar') }}" class="filtro-formulario">
+        <input type="text" name="dni" placeholder="Buscar por DNI" value="{{ request.args.get('dni', '') }}">
+        <input type="text" name="nombre" placeholder="Buscar por nombre" value="{{ request.args.get('nombre', '') }}">
+        <input type="text" name="apellido" placeholder="Buscar por apellido" value="{{ request.args.get('apellido', '') }}">
+        <input type="text" name="sector" placeholder="Buscar por sector" value="{{ request.args.get('sector', '') }}">
+        <input type="text" name="tipo_personal" placeholder="Tipo de personal" value="{{ request.args.get('tipo_personal', '') }}">
+        <button type="submit" class="btn">Filtrar</button>
+    </form>
+
+    <div class="tabla-responsive">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="{{ url_for('priv_personal.listar', dni=request.args.get('dni', ''), nombre=request.args.get('nombre', ''), apellido=request.args.get('apellido', ''), sector=request.args.get('sector', ''), tipo_personal=request.args.get('tipo_personal', ''), sort_by='dni', order='desc' if request.args.get('sort_by') == 'dni' and request.args.get('order', 'asc') == 'asc' else 'asc') }}">
+                            DNI {% if request.args.get('sort_by') == 'dni' %}{{ '▲' if request.args.get('order') == 'asc' else '▼' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('priv_personal.listar', dni=request.args.get('dni', ''), nombre=request.args.get('nombre', ''), apellido=request.args.get('apellido', ''), sector=request.args.get('sector', ''), tipo_personal=request.args.get('tipo_personal', ''), sort_by='nombre', order='desc' if request.args.get('sort_by') == 'nombre' and request.args.get('order', 'asc') == 'asc' else 'asc') }}">
+                            Nombre {% if request.args.get('sort_by') == 'nombre' %}{{ '▲' if request.args.get('order') == 'asc' else '▼' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('priv_personal.listar', dni=request.args.get('dni', ''), nombre=request.args.get('nombre', ''), apellido=request.args.get('apellido', ''), sector=request.args.get('sector', ''), tipo_personal=request.args.get('tipo_personal', ''), sort_by='apellido', order='desc' if request.args.get('sort_by') == 'apellido' and request.args.get('order', 'asc') == 'asc' else 'asc') }}">
+                            Apellido {% if request.args.get('sort_by') == 'apellido' %}{{ '▲' if request.args.get('order') == 'asc' else '▼' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>Sector</th>
+                    <th>Tipo</th>
+                    <th>
+                        <a href="{{ url_for('priv_personal.listar', dni=request.args.get('dni', ''), nombre=request.args.get('nombre', ''), apellido=request.args.get('apellido', ''), sector=request.args.get('sector', ''), tipo_personal=request.args.get('tipo_personal', ''), sort_by='creado_en', order='desc' if request.args.get('sort_by') == 'creado_en' and request.args.get('order', 'asc') == 'asc' else 'asc') }}">
+                            Fecha Creación {% if request.args.get('sort_by') == 'creado_en' %}{{ '▲' if request.args.get('order') == 'asc' else '▼' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in personal %}
+                    <tr>
+                        <td>{{ persona.dni }}</td>
+                        <td>{{ persona.nombre }}</td>
+                        <td>{{ persona.apellido }}</td>
+                        <td>{{ persona.sector.nombre if persona.sector else '-' }}</td>
+                        <td>{{ persona.tipo_personal.nombre.value if persona.tipo_personal else '-' }}</td>
+                        <td>{{ persona.creado_en.strftime('%d/%m/%Y') }}</td>
+                        <td>
+                            {% if persona.activo %}
+                                <span class="badge activo">Activo</span>
+                            {% else %}
+                                <span class="badge inactivo">Inactivo</span>
+                            {% endif %}
+                        </td>
+                        <td class="acciones-celda">
+                            <a href="{{ url_for('priv_personal.editar', id=persona.id) }}" class="btn-accion btn-editar">Editar</a>
+
+                            <form action="{{ url_for('priv_personal.eliminar', id=persona.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este miembro del personal?');">
+                                <button type="submit" class="btn-accion btn-eliminar">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="vacio">No hay registros de personal disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

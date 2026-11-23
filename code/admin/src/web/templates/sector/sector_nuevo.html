@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Nuevo Sector
+{% endblock %}
+
+{% block content %}
+    <div class="seccion-header">
+        <h2>Nuevo Sector</h2>
+    </div>
+    <form action="{{ url_for('sectores.crear') }}" method="POST" class="formulario-estandar">
+
+            <div class="form-grupo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Cocina">
+            </div>
+
+            <div class="form-grupo">
+                <label for="descripcion">Descripcion:</label>
+                <input type="text" id="descripcion" name="descripcion" required placeholder="Ej: Sector de cocina">
+            </div>
+
+            <div class="form-botones">
+                <button type="submit" class="btn">Guardar Registro</button>
+                <a href="{{ url_for('sectores.listar') }}" class="btn-secundario-enlace">Cancelar</a>
+            </div>
+        </form>
+{% endblock %}

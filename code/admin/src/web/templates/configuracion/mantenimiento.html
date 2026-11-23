@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema en Mantenimiento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen text-center">
+    <div class="max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-red-600 mb-4">Sitio en Mantenimiento</h1>
+        <p class="text-gray-700 text-lg mb-6">{{ mensaje }}</p>
+        <p class="text-sm text-gray-500 mb-6">Estamos realizando mejoras en la plataforma. Por favor, reintenta más tarde.</p>
+
+        <a href="{{ url_for('auth.login') }}" class="text-sm text-blue-600 hover:underline">
+            Acceso para Administradores
+        </a>
+    </div>
+</body>
+</html>
