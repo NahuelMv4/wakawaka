@@ -1,0 +1,512 @@
+.kiosk-container {
+  min-height: 100vh;
+  background-color: #f3f5f4;
+  padding: 20px 28px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #1f2933;
+  user-select: none;
+}
+
+/* Header */
+.kiosk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #366962;
+  color: #fff;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.brand-subtitle {
+  font-size: 0.9rem;
+  color: #616e7c;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  background: #fff;
+  border: 1px solid #d9e2ec;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+
+.btn-logout {
+  background: #fff;
+  border: 1px solid #f5c2c7;
+  color: #b02a37;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+/* Tabs principales */
+.main-tabs {
+  display: inline-flex;
+  background: #fff;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #d9e2ec;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.tab-btn {
+  min-height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3e4c59;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: #366962;
+  color: #fff;
+}
+
+/* Barra de comidas y modo */
+.selectors-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pill-group {
+  display: inline-flex;
+  background: #fff;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #d9e2ec;
+  gap: 6px;
+}
+
+.pill-option {
+  min-height: 48px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3e4c59;
+  cursor: pointer;
+}
+
+.pill-option.active {
+  background-color: #366962;
+  color: #fff;
+}
+
+/* Alertas */
+.feedback-banner {
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback-banner.success {
+  background: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.feedback-banner.error {
+  background: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+/* Grilla 2 columnas */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e4e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.panel-title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.panel-desc {
+  margin: 0 0 18px;
+  color: #616e7c;
+  font-size: 0.95rem;
+}
+
+/* Buscador */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.search-input {
+  flex: 1;
+  min-height: 54px;
+  padding: 0 16px;
+  font-size: 1.15rem;
+  border: 1px solid #cbd2d9;
+  border-radius: 10px;
+  color: #1f2933;
+}
+
+.btn-mode-toggle,
+.btn-search {
+  min-height: 54px;
+  min-width: 54px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd2d9;
+  background: #f8f9fa;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-search {
+  background: #e6f0ee;
+  border-color: #366962;
+  color: #274e49;
+}
+
+/* Teclado numérico táctil */
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.num-key {
+  min-height: 56px;
+  background: #f8f9fa;
+  border: 1px solid #e4e7eb;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2933;
+  cursor: pointer;
+}
+
+.num-key:active {
+  background: #e4e7eb;
+}
+
+.action-key {
+  font-size: 1rem;
+  color: #3e4c59;
+}
+
+/* Tarjeta persona */
+.person-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e4e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.person-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #334e68;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.person-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.person-meta {
+  font-size: 0.9rem;
+  color: #616e7c;
+}
+
+.person-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.badge-ok {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-done {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-no {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.menu-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #cbd2d9;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Botón entregar */
+.btn-deliver {
+  width: 100%;
+  min-height: 58px;
+  background-color: #366962;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-deliver:disabled {
+  background-color: #9fb3c8;
+  cursor: not-allowed;
+}
+
+/* Modo sector */
+.sector-select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd2d9;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.sector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sector-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e4e7eb;
+  border-radius: 10px;
+  min-height: 56px;
+  cursor: pointer;
+}
+
+.sector-item.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.touch-checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.sector-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sector-item-info span {
+  font-size: 0.85rem;
+  color: #616e7c;
+}
+
+.responsable-box {
+  background: #f8f9fa;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+.responsable-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tercero-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Entregas recientes */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7b8794;
+}
+
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e4e7eb;
+}
+
+.recent-name {
+  font-weight: 700;
+}
+
+.recent-meta {
+  font-size: 0.85rem;
+  color: #616e7c;
+}
+
+.recent-time {
+  font-weight: 700;
+  color: #366962;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.modal-detalle {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 16px 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detalle-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.detalle-fila span {
+  color: #64748b;
+}
+
+.modal-acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
